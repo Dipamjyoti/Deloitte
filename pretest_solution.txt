@@ -1,0 +1,14 @@
+main(){
+        string s,t;
+
+        print("Enter a string");
+        int strlen,a;
+        char c
+        for(int i=0,j=strlen-1; i<strlen; i++,j--){
+        t[i]=s[j];
+        c= t[i]'
+        switch(c)
+        case a,e,i,o,u,A,E,I,O,U : a++}
+        print("Reversed string is %s", t);
+        print("No. of vowels = %d", a);
+       }
