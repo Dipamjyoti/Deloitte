@@ -1,0 +1,20 @@
+create table empployee2
+(
+	EmployeeID integer constraint pkEId primary key,
+
+	EmployeeName varchar(20) constraint eNameNotNull not null,
+
+	EmployeeAddress varchar(20) constraint checkAddress check (employeeAddress not in ('NewYork','London','Paris')),
+
+	DOB date not null
+
+	DOJ date not null
+
+	Salary integer
+)
+
+
+  cId integer constraint pkCid primary key,
+  cName varchar2(20) constraint cNameNotNull not null,
+  caddress varchar2(20) constraint checkAddress check (cAddress in ('Delhi','Mumbai','Kolkata')),
+billamount integer constraint checkBillAmt check (billAmount>0)

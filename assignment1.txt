@@ -1,0 +1,39 @@
+create table employee2
+(
+   EmployeeID integer primary key ,
+ 
+   EmployeeName  varchar(30) not null,
+  
+   EmployeeAddress varchar(30) not null ,
+  
+   DOB Date not null ,
+ 
+   DOJ Date not null,
+ 
+   Salary integer)
+ 
+ 
+insert into employee2 values(1,'yati','banglore','10-22-1996','12-09-2018',35000)
+insert into employee2 values(2,'damini','pune','11-02-1995','10-03-2015',35000)
+insert into employee2 values(3,'chetna','pune','08-20-1996','09-23-2019',41000)
+insert into employee2 values(4,'ronak','pune','10-20-1996','10-11-2018',65000)
+insert into employee values(5,'mohan','jaipur','05-20-1996','08-26-2019',25000)
+
+select * from employee2
+
+select employeename from employee2 where salary>20000
+
+select employeename from employee2 where employeeADDRESS  like ('%a') or employeeADDRESS like ('%p') or employeeADDRESS like('%r')
+
+update employee2 set salary = 1.2*salary
+
+delete from employee2 where salary<5000
+
+alter table employee2
+add email varchar(20) 
+
+update employee2 set email='yeti@abc.com' where employeeid = 1
+update employee2 set email='damini@abc.com' where employeeid = 2
+update employee2 set email='chetna@abc.com' where employeeid = 3
+update employee2 set email='ronak@abc.com' where employeeid = 4
+update employee2 set email='mohan@abc.com' where employeeid = 5
