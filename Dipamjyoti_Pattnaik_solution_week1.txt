@@ -1,0 +1,122 @@
+1.*Write a query which will display the customer id, account type they hold, their account number and bank name.
+
+Ans. select a.customer_id, a.account_type, a.account_no, b.bank_name
+     from account_info a, bank_info b
+     where a.ifsc_code=b.ifsc_code
+
+
+2.*Write a query which will display the customer id, account type and the account number of HDFC customers who registered after 12-JAN-2012 and before 04-APR-2012.
+
+Ans. select customer_id, account_type, account_no
+     from account_info
+     where registration_date between '01-12-2012' and '04-04-2012'
+
+
+3.*Write a query which will display the customer id, customer name, account no, account type and bank name where the customers hold the account.
+
+Ans. select a.customer_id, a.account_type, a.account_no, b.bank_name, c.customer_name
+     from account_info a, bank_info b, customer_personal_info c
+     where a.ifsc_code=b.ifsc_code
+     and a.customer_id=c.customer_
+
+
+4.*Write a query which will display the customer id, customer name, gender, marital status along with the unique reference string and
+ sort the records based on customer id in descending order. <br/>
+<br/><b>Hint:  </b>Generate unique reference string as mentioned below
+:
+<br/> CustomerName_Gender_MaritalStatus
+<br/><b> Example, </b>
+<br/> C-005           KUMAR              M                 SINGLE            KUMAR_M_SINGLE
+<BR/> 
+Use ""UNIQUE_REF_STRING"" as alias name for displaying the unique reference string."
+
+Ans.  select customer_id,customer_name, gender,marital_status,customer_name||'_'||gender||'_'||marital_status
+      from customer_personal_info
+      order by customer_id desc;
+
+5.*Write a query which will display the account number, customer id, registration date, initial deposit amount of the customer
+ whose initial deposit amount is within the range of Rs.15000 to Rs.25000.
+
+Ans. select account_no, customer_id, registration_date, initial_deposit
+     from account_info
+     where initial_deposit between '15000' and '20000'
+
+
+6.*Write a query which will display customer id, customer name, date of birth, guardian name of the customers whose name starts with 'J'.
+
+Ans. select customer_id, customer_name, date_of_birth ,guardian_name
+     from customer_personal_info
+     where customer_name like 'J%'
+
+
+7.*Write a query which will display customer id, account number and passcode. 
+<br/>
+Hint:  To generate passcode, join the last three digits of customer id and last four digit of account number.
+ 
+<br/>Example
+<br/>C-001                   1234567898765432                0015432
+<br/>Use ""PASSCODE"" as alias name for displaying the passcode."
+
+Ans. select customer_id , account_no , substr(customer_id,-3) || substr(account_no,-4) as passcode
+     from account_info
+
+8.*Write a query which will display the customer id, customer name, date of birth, Marital Status, Gender, Guardian name, 
+contact no and email id of the customers whose gender is male 'M' and marital status is MARRIED.
+Ans. select customer_id, customer_name, date_of_birth, marital_status, gender, guardian_name, contact_no, mail_id
+     from customer_personal_info
+     where gender='m' and marital_status='married'
+
+9.*Write a query which will display the customer id, customer name, guardian name, reference account holders name of the customers 
+who are referenced / referred by their 'FRIEND'.
+
+Ans. select a.customer_id, a.customer_name, a.guardian_name, b.reference_acc_name as friend
+     from customer_personal_info a
+     inner join customer_reference_info b
+     on a.customer_id=b.customer_id;
+
+
+10.*Write a query to display the customer id, account number and interest amount in the below format with INTEREST_AMT as alias name
+ Sort the result based on the INTEREST_AMT in ascending order.  <BR/>Example: 
+$5<BR/>Hint: Need to prefix $ to interest amount and round the result without decimals.
+ 
+11.*Write a query which will display the customer id, customer name, account no, account type, activation date,
+ bank name whose account will be activated on '10-APR-2012'
+
+Ans. select cpi.customer_id, cpi.customer_name, ai.account_no, ai.account_type, ai.activation_date, bi.bank_name
+     from customer_personal_info cpi
+     inner join account_info ai
+     on cpi.customer_id=ai.customer_id
+     inner join bank_info bi
+     on bi.ifsc_code=ai.ifsc_code
+     where ai.activation_date='04-10-2012';
+
+
+12.*Write a query which will display account number, customer id, customer name, bank name, branch name, ifsc code
+, citizenship, interest and initial deposit amount of all the customers.
+
+Ans. select ai.account_no, cpi.customer_id, cpi.customer_name, bi.bank_name, bi.branch_name, bi.ifsc_code, cpi.citizenship,      ai.interest, ai.initial_deposit
+     from customer_personal_info cpi
+     inner join account_info ai
+     on cpi.customer_id=ai.customer_id
+     inner join bank_info bi
+     on bi.ifsc_code=ai.ifsc_code
+
+13.*Write a query which will display customer id, customer name, date of birth, guardian name, contact number,
+ mail id and reference account holder's name of the customers who has submitted the passport as an identification document.
+
+Ans. select cpi.customer_id, cpi.customer_name, cpi.date_of_birth, cpi.guardian_name, cpi.mail_id, cri.reference_acc_name
+     from customer_personal_info cpi
+     inner join customer_reference_info cri
+     on cpi.customer_id=cri.customer_id
+     where cpi.identification_doc_type='passport';
+
+14.*Write a query to display the customer id, customer name, account number, account type, initial deposit, 
+interest who have deposited maximum amount in the bank.
+
+Ans. select a.account_no,a.customer_id,b.customer_name,a.account_type,a.initial_deposit 
+     from account_info a, customer_personal_info b 
+     where a.customer_id=b.customer_id 
+     and initial_deposit= (select max(c.initial_deposit) from account_info c)
+
+15.*Write a query to display the customer id, customer name, account number, account type, interest, bank name 
+and initial deposit amount of the customers who are getting maximum interest rate.
