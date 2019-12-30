@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+	var s=parseInt(prompt("Enter bill amount : "));
+	//document.write("Entered amount is "+s);
+	var today = new Date();
+	var lastdate = new Date();
+	var result;
+	lastdate.setFullYear(2019,11,15);
+	var day=1000*60*60*24;
+	x=(lastdate-today)/day;
+	var fine=x*50;
+	//alert("Number of days left " + x);
+	if(x>0){
+		//result=parseInt(x*50)+Intparse(s);
+		//alert("Total bill amount = "+(parseInt(fine)+parseInt(s)));
+		alert("Total bill amount = "+(fine+s));
+	}
+	else
+		alert("Total bill amount = "+s);
+</script>
+</head>
+<body>
+
+</body>
+</html>
