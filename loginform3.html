@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Form</title>
+<script type="text/javascript">
+	/*function change(){
+		var myspan1=document.getElementById("myspan1");
+		var errormessage=document.getElementById("errormessage");
+		myspan1.innerHTML="<font color=blue>Welcome</font>";
+		errormessage.innerHTML="<font color=red>Some error occured</font>";
+	}*/
+	function validate(){
+		//alert("validate called");
+		var uname = document.getElementById("username").value;
+		var password = document.getElementById("password").value;
+		var cpassword = document.getElementById("cpassword").value;
+		if(uname.length == 0){
+			alert("Please enter username");
+			return false;
+		}
+		else if(password.length<6){
+			alert("Password length should be atleast 6 characters");
+			return false;
+		}
+		else if(password==cpassword){
+			alert("Welcome : "+uname);
+			//return false;
+		}
+		else{
+			alert("Confirm Password not same as Password");
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+	<form action="Home.html" onsubmit="return validate()">
+		<table cellspacing="10" cellpadding="10" align="center">
+			<caption><h2>Login Form</h2></caption>
+			<tr>
+				<td>User Name</td>
+				<td><input type="text"name="Username"id="username"></td>
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="password"name="Password"id="password"></td>
+			</tr>
+			<tr>
+				<td>Confirm Password</td>
+				<td><input type="password"name="CPassword"id="cpassword"></td>
+			</tr>
+			<tr>
+				<td><input type="submit"value="Submit"></td>
+				<td><input type="reset"value="Reset"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
