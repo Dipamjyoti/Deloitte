@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+
+function validate(){
+	
+	var customerId=document.getElementById("customerId").value;
+	var customerName=document.getElementById("customerName").value;
+	var customerAddress=document.getElementById("customerAddress").value;
+	var billAmount=document.getElementById("billAmount").value;
+	
+	var customerIdError=document.getElementById("customerIdError");
+	var customerNameError=document.getElementById("customerNameError");
+	var customerAddressError=document.getElementById("customerAddressError");
+	var billAmountError=document.getElementById("billAmountError");
+	
+	//reset
+	customerIdError.innerHTML="";
+	customerNameError.innerHTML="";
+	customerAddressError.innerHTML="";
+	billAmountError.innerHTML="";
+		
+	
+	customerAddress=customerAddress.toUpperCase();
+	
+	if(customerId.length==0){
+		customerIdError.innerHTML="<font color=red>customer ID cant be blank</font>";
+		
+	}else if(customerId.length < 5){
+		customerIdError.innerHTML="<font color=red>customer ID should be atleast 5 digit</font>";
+	}else if(customerName.length==0){
+		customerNameError.innerHTML="<font color=red>customer name cant be blank</font>";
+		
+	}else if(customerAddress.length==0){
+		customerAddressError.innerHTML="<font color=red>customer address cant be blank</font>";
+	}
+	else if(!(customerAddress=="PUNE" || customerAddress=="DELHI" || customerAddress=="MUMBAI")){
+		customerAddressError.innerHTML="<font color=red>customer address should be between pune mumbai delhi</font>";
+	}else if(billAmount.length==0){
+		billAmountError.innerHTML="<font color=red>bill amount cant be blank</font>";	
+	}
+	else if(billAmount<0){
+		billAmountError.innerHTML="<font color=red>bill amount should be positive</font>";	
+	}
+	else{
+		alert("successful!!!!\n"+"customerId = "+customerId+"\ncustomerName = "+customerName+"\ncustomerAddress = "+customerAddress+"\nbillAmount = "+billAmount)
+	}
+	
+	
+}
+
+
+
+
+
+</script>
+<body>
+	<form>
+		<table cellspacing="10" cellpading="10" align="center" >
+			<caption><h2>Customer Form</h2></caption>
+			<tr>
+				<td>Customer Id</td>
+				<td><input type="text" name="customerId" id="customerId"><div id="customerIdError"></div></td>
+						
+			</tr>
+			
+			
+			<tr>
+				<td>Customer Name</td>
+				<td><input type="text" name="customerName" id="customerName"><div id="customerNameError"></div></td>
+			</tr>
+			<tr>
+				<td>Customer address</td>
+				<td><input type="text" name="customerAddress" id="customerAddress"><div id="customerAddressError"></div></td>
+			</tr>
+			<tr>
+				<td>Bill Amount</td>
+				<td><input type="text" name="billAmount" id="billAmount"><div id="billAmountError"></div></td>
+			</tr>
+			<tr>
+				<td align="center"><input type="button" value="check" onclick=validate()><input type="submit" value="save"></td>
+				<td align="center"><input type="reset" value="clear"></td>
+		</table>
+	</form>
+</body>
+</html>
